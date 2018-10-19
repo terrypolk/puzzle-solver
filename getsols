@@ -1,0 +1,116 @@
+#!/usr/bin/perl
+
+open(F, "sol.html");
+
+$loop = 0;
+while (1) {
+  $line = <F>;
+  last if ($line eq "");
+  $loop++;
+
+  $row1 = <F>;
+  $row1 = clean($row1);
+  $row2 = <F>;
+  $row2 = clean($row2);
+  $row3 = <F>;
+  $row3 = clean($row3);
+  $row4 = <F>;
+  $row4 = clean($row4);
+  
+  $sol{$loop} = "$row1 $row2 $row3 $row4";
+  #print "$sol{$loop}\n";
+
+  for (1..21) {
+    $line = <F>;
+  }
+}
+
+close F;
+
+foreach $loop1 (1..$loop) {
+  $right1 = "";
+  $left1 = "";
+  $top1 = "";
+  $bottom1 = "";
+
+  @pcs = split(" ", $sol{$loop1});
+  foreach $p (3,7,11,15) {
+    $right1 .= substr($pcs[$p],1,1);
+  }
+  foreach $p (0,4,8,12) {
+    $left1 .= substr($pcs[$p],3,1);
+  }
+  foreach $p (0,1,2,3) {
+    $top1 .= substr($pcs[$p],0,1);
+  }
+  foreach $p (12,13,14,15) {
+    $bottom1 .= substr($pcs[$p],2,1);
+  }
+
+  foreach $loop2 (1..$loop) {
+    $right2 = "";
+    $left2 = "";
+    $top2 = "";
+    $bottom2 = "";
+
+    next if ($loop2 == $loop1);
+
+    @pcs = split(" ", $sol{$loop2});
+    foreach $p (3,7,11,15) {
+      $right2 .= substr($pcs[$p],1,1);
+    }
+    foreach $p (0,4,8,12) {
+      $left2 .= substr($pcs[$p],3,1);
+    }
+    foreach $p (0,1,2,3) {
+      $top2 .= substr($pcs[$p],0,1);
+    }
+    foreach $p (12,13,14,15) {
+      $bottom2 .= substr($pcs[$p],2,1);
+    }
+
+    #print "$edge1 comp $edge2 and $edge3\n";
+
+    if ($right1 eq $right2) {
+      print "$loop1 right edge is same as $loop2 right edge\n";
+    }
+
+    if ($right1 eq $left2) {
+      print "$loop1 right edge is same as $loop2 left edge <<<\n";
+    }
+
+    if ($left1 eq $left2) {
+      print "$loop1 left edge is same as $loop2 left edge\n";
+    }
+
+    if ($left1 eq $right2) {
+      print "$loop1 left edge is same as $loop2 right edge <<<\n";
+    }
+
+    if ($top1 eq $top2) {
+      print "$loop1 top is same as $loop2 top\n";
+    }
+
+    if ($top1 eq $bottom2) {
+      print "$loop1 top is same as $loop2 bottom <<<\n";
+    }
+
+    if ($bottom1 eq $bottom2) {
+      print "$loop1 bottom is same as $loop2 bottom\n";
+    }
+
+    if ($bottom1 eq $top2) {
+      print "$loop1 bottom is same as $loop2 top <<<\n";
+    }
+
+  }
+}
+
+
+sub clean {
+  my($data) = @_;
+  chomp $data;
+  $data =~ s/\<br\>//g;
+  return $data;
+}
+

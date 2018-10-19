@@ -1,0 +1,660 @@
+12: abdc hgda dbhh ebca...
+solution!
+ a   h   d   e
+c+b a+g h+b a+b
+ d   d   h   c
+ c   c   g   d
+a+g h+e f+g h+e
+ b   e   a   f
+ a   f   b   e
+e+c d+c d+a b+f
+ e   g   f   h
+ f   h   e   g
+c+b a+b a+g h+b
+ e   b   h   a
+1 2 7 15
+3 9 14 16
+4 10 11 13
+5 6 8 12
+
+
+
+# a = in circle
+# b = out circle
+# c = in cross
+# d = out cross
+# e = out inward arrow
+# f = in outward arrow
+# g = out outward arrow
+# h = in inward arrow
+
+
+
+
+
+1: abdc hgda dbhh bdfa...
+2: abdc hgda dbhh bbha...
+3: abdc hgda dbhh hgea...
+4: abdc hgda dbhh bgha...
+5: abdc hgda dbhh fdba...
+6: abdc hgda dbhh egha...
+7: abdc hgda dbhh fgga...
+8: abdc hgda dbhh cgba...
+9: abdc hgda dbhh ceea...
+10: abdc hgda dbhh hgba...
+11: abdc hgda dbhh ggfa...
+12: abdc hgda dbhh ebca...
+solution!
+ a   h   d   e
+c+b a+g h+b a+b
+ d   d   h   c
+ c   c   g   d
+a+g h+e f+g h+e
+ b   e   a   f
+ a   f   b   e
+e+c d+c d+a b+f
+ e   g   f   h
+ f   h   e   g
+c+b a+b a+g h+b
+ e   b   h   a
+1 2 7 15
+3 9 14 16
+4 10 11 13
+5 6 8 12
+
+13: abdc hgda dbhh bgca...
+14: abdc hgda dbhh hbba...
+15: abdc hgda dbhh cbea...
+16: abdc hgda dbhh eeca...
+solution!
+ a   h   d   e
+c+b a+g h+b a+e
+ d   d   h   c
+ c   c   g   d
+a+b a+g h+e f+g
+ e   b   a   c
+ f   a   b   d
+e+h g+f e+f e+h
+ b   g   c   f
+ a   h   d   e
+b+h g+a b+f e+c
+ b   b   a   h
+1 4 7 15
+2 3 6 11
+9 12 13 14
+5 8 10 16
+
+solution!
+ a   h   d   e
+c+b a+g h+b a+e
+ d   d   h   c
+ c   c   g   d
+a+b a+g h+e f+g
+ e   b   a   c
+ f   a   b   d
+e+h g+f e+f e+h
+ b   g   c   f
+ a   h   d   e
+b+h g+a b+f e+h
+ b   b   a   c
+1 4 7 15
+2 3 6 11
+9 12 13 14
+5 8 10 16
+
+17: abdc hgda abgh bdfa...
+18: abdc hgda abgh bbha...
+19: abdc hgda abgh hgea...
+20: abdc hgda abgh fdba...
+21: abdc hgda abgh egha...
+22: abdc hgda abgh fgga...
+23: abdc hgda abgh cgba...
+solution!
+ a   h   a   c
+c+b a+g h+b a+g
+ d   d   g   b
+ c   c   h   a
+e+a b+a b+f e+h
+ e   e   e   g
+ f   f   f   h
+e+h g+a b+c d+h
+ d   g   e   b
+ c   h   f   a
+g+f e+c d+a b+h
+ d   e   b   b
+1 3 7 8
+2 4 6 13
+9 12 14 15
+5 10 11 16
+
+24: abdc hgda abgh ceea...
+25: abdc hgda abgh ggfa...
+26: abdc hgda abgh ebca...
+27: abdc hgda abgh bgca...
+28: abdc hgda abgh hbba...
+29: abdc hgda abgh cbea...
+30: abdc hgda abgh eeca...
+solution!
+ a   h   a   e
+c+b a+g h+b a+e
+ d   d   g   c
+ c   c   h   d
+g+a b+a b+f e+h
+ b   e   e   f
+ a   f   f   e
+h+b a+d c+d c+b
+ b   b   g   f
+ a   a   h   e
+h+e f+g h+d c+e
+ g   g   b   h
+1 4 7 8
+2 3 13 14
+5 10 11 12
+6 9 15 16
+
+31: abdc hgda gbah bdfa...
+32: abdc hgda gbah bbha...
+33: abdc hgda gbah hgea...
+34: abdc hgda gbah fdba...
+35: abdc hgda gbah egha...
+36: abdc hgda gbah fgga...
+37: abdc hgda gbah cgba...
+38: abdc hgda gbah ceea...
+39: abdc hgda gbah ggfa...
+40: abdc hgda gbah ebca...
+solution!
+ a   h   g   e
+c+b a+g h+b a+b
+ d   d   a   c
+ c   c   b   d
+a+g h+e f+e f+g
+ b   e   c   c
+ a   f   d   d
+h+b a+g h+e f+b
+ b   g   f   a
+ a   h   e   b
+c+e f+b a+g h+d
+ e   e   h   h
+1 2 7 8
+3 11 12 16
+5 9 10 14
+4 6 13 15
+
+41: abdc hgda gbah bgca...
+solution!
+ a   h   g   b
+c+b a+g h+b a+g
+ d   d   a   c
+ c   c   b   d
+a+b a+e f+e f+g
+ e   e   c   c
+ f   f   d   d
+e+h g+a b+f e+h
+ b   g   a   f
+ a   h   b   e
+h+b a+g h+d c+e
+ b   e   h   h
+1 3 7 8
+2 4 11 12
+9 10 13 14
+5 6 15 16
+
+42: abdc hgda gbah hbba...
+solution!
+ a   h   g   h
+c+b a+g h+b a+b
+ d   d   a   b
+ c   c   b   a
+a+b a+g h+d c+e
+ e   b   h   e
+ f   a   g   f
+h+e f+b a+g h+e
+ b   d   f   d
+ a   c   e   c
+h+e f+g h+e f+e
+ g   d   c   b
+1 5 7 8
+2 3 4 15
+9 10 13 14
+6 11 12 16
+
+43: abdc hgda gbah cbea...
+44: abdc hgda gbah eeca...
+45: abdc hgda fedh aggf...
+46: abdc hgda fedh dgcf...
+43: abdc hgda gbah cbea...
+44: abdc hgda gbah eeca...
+45: abdc hgda fedh aggf...
+46: abdc hgda fedh dgcf...
+47: abdc hgda fedh dbaf...
+48: abdc hgda fedh ggaf...
+49: abdc hgda fedh cebf...
+50: abdc hgda fedh cgdf...
+51: abdc hgda fedh ebhf...
+52: abdc hgda fedh becf...
+53: abdc hgda fedh abdf...
+54: abdc hgda fedh hbef...
+55: abdc hgda eech aggf...
+56: abdc hgda eech dgcf...
+57: abdc hgda eech edhf...
+58: abdc hgda eech dbaf...
+solution!
+ a   h   e   d
+c+b a+g h+e f+b
+ d   d   c   a
+ c   c   d   b
+a+b a+g h+b a+b
+ e   b   h   h
+ f   a   g   g
+c+d c+e f+g h+e
+ g   e   a   a
+ h   f   b   b
+f+d c+b a+g h+e
+ e   e   h   f
+1 7 10 16
+2 3 5 15
+4 6 9 11
+8 12 13 14
+
+59: abdc hgda eech ggaf...
+60: abdc hgda eech cebf...
+61: abdc hgda eech cgdf...
+solution!
+ a   h   e   c
+c+b a+g h+e f+g
+ d   d   c   d
+ c   c   d   c
+a+b a+g h+b a+e
+ e   b   h   e
+ f   a   g   f
+d+a b+h g+f e+h
+ b   g   a   d
+ a   h   b   c
+h+b a+g h+e f+e
+ b   e   f   b
+1 7 11 16
+2 3 4 15
+8 9 10 14
+5 6 12 13
+
+solution!
+ a   h   e   c
+c+b a+g h+e f+g
+ d   d   c   d
+ c   c   d   c
+a+b a+g h+b a+e
+ e   b   h   e
+ f   a   g   f
+d+a b+h g+a b+c
+ b   g   f   e
+ a   h   e   f
+b+h g+a b+f e+h
+ b   e   h   d
+1 7 11 16
+2 3 4 15
+8 9 10 12
+5 6 13 14
+
+62: abdc hgda eech ebhf...
+63: abdc hgda eech becf...
+solution!
+ a   h   e   b
+c+b a+g h+e f+e
+ d   d   c   c
+ c   c   d   d
+a+b a+g h+e f+g
+ e   b   f   c
+ f   a   e   d
+a+g h+b a+e f+b
+ g   g   c   a
+ h   h   d   b
+f+b a+g h+b a+b
+ e   e   h   h
+1 7 12 16
+2 3 11 14
+4 8 9 10
+5 6 13 15
+
+solution!
+ a   h   e   b
+c+b a+g h+e f+e
+ d   d   c   c
+ c   c   d   d
+a+b a+g h+e f+g
+ e   b   f   c
+ f   a   e   d
+e+h g+f e+a b+h
+ b   g   c   h
+ a   h   d   g
+b+h g+a b+f e+h
+ b   b   a   a
+1 7 12 16
+2 3 11 14
+4 9 13 15
+5 6 8 10
+
+solution!
+ a   h   e   b
+c+b a+g h+e f+e
+ d   d   c   c
+ c   c   d   d
+a+b a+g h+e f+g
+ e   b   f   c
+ f   a   e   d
+e+h g+f e+a b+f
+ b   g   c   a
+ a   h   d   b
+b+h g+a b+h g+a
+ b   e   h   h
+1 7 12 16
+2 3 11 14
+4 9 10 13
+5 6 8 15
+
+solution!
+ a   h   e   b
+c+b a+g h+e f+e
+ d   d   c   c
+ c   c   d   d
+a+b a+g h+e f+g
+ e   b   f   c
+ f   a   e   d
+e+h g+f e+a b+f
+ b   g   c   a
+ a   h   d   b
+h+b a+g h+b a+g
+ b   e   h   h
+1 7 12 16
+2 3 11 14
+4 9 10 13
+5 6 8 15
+
+solution!
+ a   h   e   b
+c+b a+g h+e f+e
+ d   d   c   c
+ c   c   d   d
+a+b a+g h+e f+g
+ e   b   f   c
+ f   a   e   d
+e+h g+f e+a b+f
+ b   g   c   a
+ a   h   d   b
+h+b a+g h+b a+b
+ g   e   h   h
+1 7 12 16
+2 3 11 14
+4 9 10 13
+5 6 8 15
+
+solution!
+ a   h   e   b
+c+b a+g h+e f+e
+ d   d   c   c
+ c   c   d   d
+a+b a+g h+e f+g
+ e   b   f   c
+ f   a   e   d
+h+e f+b a+g h+b
+ b   d   h   h
+ a   c   g   g
+h+b a+e f+g h+b
+ b   e   a   a
+1 7 12 16
+2 3 11 14
+6 10 13 15
+4 5 8 9
+
+64: abdc hgda eech hdef...
+65: abdc hgda eech abdf...
+66: abdc hgda eech hbef...
+solution!
+ a   h   e   h
+c+b a+g h+e f+b
+ d   d   c   e
+ c   c   d   f
+a+b a+g h+b a+d
+ e   b   h   b
+ f   a   g   a
+c+d c+e f+g h+b
+ g   e   a   g
+ h   f   b   h
+f+d c+b a+b a+g
+ e   e   h   e
+1 7 13 16
+2 3 10 15
+4 8 9 11
+5 6 12 14
+
+solution!
+ a   h   e   h
+c+b a+g h+e f+b
+ d   d   c   e
+ c   c   d   f
+a+b a+g h+b a+d
+ e   b   h   b
+ f   a   g   a
+c+d c+e f+g h+b
+ g   e   a   b
+ h   f   b   a
+f+d c+b a+g h+e
+ e   e   h   g
+1 7 13 16
+2 3 10 15
+4 5 9 11
+6 8 12 14
+
+solution!
+ a   h   e   h
+c+b a+g h+e f+b
+ d   d   c   e
+ c   c   d   f
+a+b a+g h+b a+d
+ e   b   h   b
+ f   a   g   a
+c+d c+e f+g h+e
+ g   e   a   g
+ h   f   b   h
+f+d c+b a+b a+g
+ e   e   h   b
+1 7 13 16
+2 3 10 15
+4 6 9 11
+5 8 12 14
+
+67: abdc hgda bbah bdfa...
+68: abdc hgda bbah hgea...
+solution!
+ a   h   b   h
+c+b a+g h+b a+g
+ d   d   a   e
+ c   c   b   f
+a+b a+g h+d c+b
+ e   b   h   e
+ f   a   g   f
+h+e f+b a+g h+e
+ d   d   f   b
+ c   c   e   a
+e+h g+f e+a b+h
+ e   d   c   g
+1 5 6 7
+2 3 12 15
+9 10 13 14
+4 8 11 16
+
+69: abdc hgda bbah bgha...
+70: abdc hgda bbah fdba...
+71: abdc hgda bbah egha...
+solution!
+ a   h   b   e
+c+b a+g h+b a+g
+ d   d   a   h
+ c   c   b   g
+a+b a+g h+d c+d
+ e   b   h   f
+ f   a   g   e
+d+a b+h g+a b+c
+ b   g   f   f
+ a   h   e   e
+c+e f+d c+e f+b
+ e   e   h   h
+1 5 6 7
+2 3 11 15
+8 9 10 12
+4 13 14 16
+
+72: abdc hgda bbah fgga...
+73: abdc hgda bbah cgba...
+74: abdc hgda bbah ceea...
+solution!
+ a   h   b   c
+c+b a+g h+b a+e
+ d   d   a   e
+ c   c   b   f
+a+b a+g h+d c+b
+ e   b   h   e
+ f   a   g   f
+h+e f+b a+g h+e
+ d   d   f   b
+ c   c   e   a
+g+f e+h g+a b+h
+ d   e   h   g
+1 4 5 7
+2 3 12 15
+9 10 13 14
+6 8 11 16
+
+75: abdc hgda bbah hgba...
+solution!
+ a   h   b   h
+c+b a+g h+b a+g
+ d   d   a   b
+ c   c   b   a
+a+b a+g h+d c+e
+ e   b   h   e
+ f   a   g   f
+h+e f+b a+g h+e
+ b   d   f   d
+ a   c   e   c
+h+e f+g h+e f+e
+ g   d   c   b
+1 5 7 8
+2 3 4 15
+9 10 13 14
+6 11 12 16
+
+76: abdc hgda bbah ggfa...
+77: abdc hgda bbah ebca...
+solution!
+ a   h   b   e
+c+b a+g h+b a+b
+ d   d   a   c
+ c   c   b   d
+a+g h+e f+e f+g
+ b   e   c   c
+ a   f   d   d
+e+h g+a b+f e+h
+ g   g   a   f
+ h   h   b   e
+f+b a+g h+d c+e
+ e   b   h   a
+1 2 5 7
+3 11 12 16
+6 9 10 14
+4 8 13 15
+
+solution!
+ a   h   b   e
+c+b a+g h+b a+b
+ d   d   a   c
+ c   c   b   d
+a+g h+e f+e f+g
+ b   e   c   c
+ a   f   d   d
+b+h g+a b+f e+h
+ g   g   a   f
+ h   h   b   e
+f+b a+g h+d c+e
+ e   e   h   a
+1 2 5 7
+3 11 12 16
+8 9 10 14
+4 6 13 15
+
+solution!
+ a   h   b   e
+c+b a+g h+b a+b
+ d   d   a   c
+ c   c   b   d
+a+g h+e f+e f+g
+ b   e   c   c
+ a   f   d   d
+h+b a+g h+e f+b
+ g   g   f   a
+ h   h   e   b
+g+a b+f e+c d+h
+ e   e   a   h
+1 2 5 7
+3 11 12 16
+8 9 10 14
+4 6 13 15
+
+78: abdc hgda bbah bgca...
+solution!
+ a   h   b   b
+c+b a+g h+b a+g
+ d   d   a   c
+ c   c   b   d
+a+b a+e f+e f+g
+ e   e   c   c
+ f   f   d   d
+e+h g+a b+f e+h
+ b   g   a   f
+ a   h   b   e
+h+b a+g h+d c+e
+ g   e   h   h
+1 3 5 7
+2 4 11 12
+9 10 13 14
+6 8 15 16
+
+79: abdc hgda bbah cbea...
+80: abdc hgda bbah eeca...
+solution!
+ a   h   b   e
+c+b a+g h+b a+e
+ d   d   a   c
+ c   c   b   d
+a+b a+g h+e f+g
+ e   b   f   c
+ f   a   e   d
+h+e f+b a+g h+b
+ d   d   h   h
+ c   c   g   g
+e+f e+h g+a b+h
+ b   e   f   a
+1 4 5 7
+2 3 11 13
+6 10 14 15
+8 9 12 16
+
+solution!
+ a   h   b   e
+c+b a+g h+b a+e
+ d   d   a   c
+ c   c   b   d
+a+b a+g h+e f+g
+ e   b   f   c
+ f   a   e   d
+h+e f+b a+g h+b
+ d   d   h   h
+ c   c   g   g
+h+e f+e f+g h+b
+ e   b   a   a
+1 4 5 7
+2 3 11 13
+6 10 14 15
+8 9 12 16
+
+
+

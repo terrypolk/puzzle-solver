@@ -1,0 +1,274 @@
+#!/usr/bin/perl
+
+$| = 1;
+# a = in circle
+# b = out circle
+# c = in cross
+# d = out cross
+# e = out inward arrow
+# f = in outward arrow
+# g = out outward arrow
+# h = in inward arrow
+
+$match{ab} = 1;
+$match{ba} = 1;
+$match{cd} = 1;
+$match{dc} = 1;
+$match{ef} = 1;
+$match{fe} = 1;
+$match{gh} = 1;
+$match{hg} = 1;
+
+ @{$puz{1}{configs}} = qw(abdc cabd dcab bdca acdb bacd dbac cdba);
+ @{$puz{2}{configs}} = qw(aebc caeb bcae ebca acbe eacb beac cbea);
+ @{$puz{3}{configs}} = qw(abgc cabg gcab bgca acgb bacg gbac cgba);
+ @{$puz{4}{configs}} = qw(aeec caee ecae eeca acee eace eeac ceea);
+ 
+ @{$puz{5}{configs}} = qw(hbba ahbb bahb bbah habb bhab bbha abbh);
+ @{$puz{6}{configs}} = qw(hgea ahge eahg geah haeg ghae egha aegh);
+ @{$puz{7}{configs}} = qw(hgda ahgd dahg gdah hadg ghad dgha adgh);
+ @{$puz{8}{configs}} = qw(hgba ahgb bahg gbah habg ghab bgha abgh);
+
+ @{$puz{9}{configs}} = qw(fgga afgg gafg ggaf fagg gfag ggfa aggf);
+@{$puz{10}{configs}} = qw(fdba afdb bafd dbaf fabd dfab bdfa abdf);
+
+@{$puz{11}{configs}} = qw(fdgc cfdg gcfd dgcf fcgd dfcg gdfc cgdf);
+@{$puz{12}{configs}} = qw(fbec cfbe ecfb becf fceb bfce ebfc cebf);
+
+@{$puz{13}{configs}} = qw(hbef fhbe efhb befh hfeb bhfe ebhf febh);
+@{$puz{14}{configs}} = qw(hdef fhde efhd defh hfed dhfe edhf fedh);
+
+@{$puz{15}{configs}} = qw(hdbh hhdb bhhd dbhh hhbd dhhb bdhh hbdh);
+
+@{$puz{16}{configs}} = qw(heec chee eche eech hcee ehce eehc ceeh);
+
+#- Number each config (16 x 8 configs, or 128).
+#- Associate each config with a piece.
+foreach $piece (1..16) {
+  foreach $config (0..7) {
+    push(@puz, ${$puz{$piece}{configs}}[$config]);
+    $pieces{${$puz{$piece}{configs}}[$config]} = $piece;
+  }
+}
+
+
+#$loop = 0;
+#foreach $item (sort @puz) {
+#  $loop++;
+#  print "$item  $loop\n";
+#}
+
+#$loop = 0;
+#foreach $piece (sort keys %pieces) {
+#  $loop++;
+#  print "$piece belongs to piece $pieces{$piece} ($loop)\n";
+#}
+
+#exit;
+
+#- Compute all row combinations.
+#- 1. Place a piece in column 1.
+#- 2. Take each other piece and try to fit it to the first piece.
+#-    Attempt every config (flip, rotate).  If it never fits, move to
+#-    the next piece.
+#- 3. Once two fit together, take the remaining pieces and attempt
+#-    to fit them to the second piece.
+#- 4. Take the remaining pieces and find all combinations that fit
+#-    to column 3.  Record the rows that fit together.
+#- 5. Continue to process through all possibilities for columns 2,
+#-    3 and 4.
+#- 6. Rotate piece and/or flip the piece in column 1 and start again.
+#- 7. After all configs of the piece in column 1 have been used,
+#-    place the next piece in column 1 and repeat the process.
+
+$allrows = 0;
+$currentrow = 0;
+foreach $col1piece (1..16) {
+  $rowcount = 0;
+  foreach $col1 (@{$puz{$col1piece}{configs}}) {
+    %used = ();
+    $used{$pieces{$col1}} = 1;
+    warn "rotation of $col1piece: $col1...\n";
+    foreach $col2 (keys %pieces) {
+      next if ($used{$pieces{$col2}});
+      if (match("lr", $col1, $col2)) {
+        $used{$pieces{$col2}} = 1;
+  
+        foreach $col3 (keys %pieces) {
+          next if ($used{$pieces{$col3}});
+          if (match("lr", $col2, $col3)) {
+            $used{$pieces{$col3}} = 1;
+  
+            foreach $col4 (keys %pieces) {
+              next if ($used{$pieces{$col4}});
+              if (match("lr", $col3, $col4)) {
+                #printrow(($col1,$col2,$col3,$col4)); 
+                #print join(" ",($col1,$col2,$col3,$col4)) . "\n"; 
+                $rowcount++;
+                $currentrow++;
+                $rowsols{$currentrow} = "$col1 $col2 $col3 $col4";
+                $rowsolpieces{$currentrow} = join(" ", sort bynumber ($pieces{$col1},
+                  $pieces{$col2},$pieces{$col3},$pieces{$col4}));
+              }
+            }
+  
+            $used{$pieces{$col3}} = 0;
+          }
+        }
+  
+        $used{$pieces{$col2}} = 0;
+      }
+    }
+  }
+  
+  warn "$rowcount rows\n";
+  $allrows += $rowcount;
+}
+warn "total rows: $allrows  currentrow: $currentrow\n";
+
+#- Fit rows together.
+foreach $row1num (1..$allrows) {
+  %used = ();
+  $row1 = $rowsols{$row1num};
+  warn "$row1num: $row1...\n";
+  ($p1,$p2,$p3,$p4) = split(" ", $rowsols{$row1num});
+  @p1 = split(" ", $rowsolpieces{$row1num});
+  foreach $p (@p1) {
+    $used{$p} = 1;
+  }
+
+  foreach $row2num (1..$allrows) {
+    @p2 = split(" ", $rowsolpieces{$row2num});
+    $dup = 0;
+    foreach $p (@p2) {
+      $dup = 1 if ($used{$p});
+    }
+    next if ($dup);
+    foreach $p (@p2) {
+      $used{$p} = 1;
+    }
+
+    ($p5,$p6,$p7,$p8) = split(" ", $rowsols{$row2num});
+    if (! match("ab", $p1, $p5) || ! match("ab", $p2, $p6) ||
+      ! match("ab", $p3, $p7) || ! match("ab", $p4, $p8)) {
+      foreach $p (@p2) {
+        $used{$p} = 0;
+      }
+      next;
+    }
+
+    foreach $row3num (1..$allrows) {
+      @p3 = split(" ", $rowsolpieces{$row3num});
+      $dup = 0;
+      foreach $p (@p3) {
+        $dup = 1 if ($used{$p});
+      }
+      next if ($dup);
+      foreach $p (@p3) {
+        $used{$p} = 1;
+      }
+
+      ($p9,$p10,$p11,$p12) = split(" ", $rowsols{$row3num});
+      if (! match("ab", $p5, $p9) || ! match("ab", $p6, $p10) ||
+        ! match("ab", $p7, $p11) || ! match("ab", $p8, $p12)) {
+        foreach $p (@p3) {
+          $used{$p} = 0;
+        }
+        next;
+      }
+
+      foreach $row4num (1..$allrows) {
+        @p4 = split(" ", $rowsolpieces{$row4num});
+        $dup = 0;
+        foreach $p (@p4) {
+          $dup = 1 if ($used{$p});
+        }
+        next if ($dup);
+        ($p13,$p14,$p15,$p16) = split(" ", $rowsols{$row4num});
+        next if (! match("ab", $p9, $p13));
+        next if (! match("ab", $p10, $p14));
+        next if (! match("ab", $p11, $p15));
+        next if (! match("ab", $p12, $p16));
+
+        print "solution!\n";
+        #printrow((split(" ", $rowsols{$row1num})));
+        #printrow((split(" ", $rowsols{$row2num})));
+        #printrow((split(" ", $rowsols{$row3num})));
+        #printrow((split(" ", $rowsols{$row4num})));
+
+        print "$rowsols{$row1num}<br>\n";
+        print "$rowsols{$row2num}<br>\n";
+        print "$rowsols{$row3num}<br>\n";
+        print "$rowsols{$row4num}<br>\n";
+        print "<br>\n";
+
+        printimg($rowsols{$row1num});
+        printimg($rowsols{$row2num});
+        printimg($rowsols{$row3num});
+        printimg($rowsols{$row4num});
+
+        #print $rowsolpieces{$row1num} . "\n";
+        #print $rowsolpieces{$row2num} . "\n";
+        #print $rowsolpieces{$row3num} . "\n";
+        #print $rowsolpieces{$row4num} . "\n";
+        #print "\n";
+      }
+
+      foreach $p (@p3) {
+        $used{$p} = 0;
+      }
+
+    }
+
+  }
+}
+
+
+sub printused {
+  foreach $key (sort bynumber keys %used) {
+    print "$key ";
+  }
+  print "\n";
+}
+  
+sub printimg {
+  my($data) = @_;
+  my(@data) = split(" ", $data);
+  my($item);
+  foreach $item (@data) {
+    print qq(<img width=100 height=100 src="$item\.gif">\n)
+  }
+  print "<br>\n";
+}
+
+sub printrow {
+  my(@data) = @_;
+  my($item,@row1,@row2,@row3);
+  foreach $item (@data) {
+    push(@row1, substr($item,0,1));
+    push(@row2, substr($item,-1) . "+" . substr($item,1,1));
+    push(@row3, substr($item,2,1));
+  }
+  print " " . join("   ", @row1) . "\n";
+  print join(" ", @row2) . "\n";
+  print " " . join("   ", @row3) . "\n";
+}
+
+sub match {
+  my($type, $p1, $p2) = @_;
+  my($item1, $item2);
+
+  if ($type eq "lr") {
+    $item1 = substr($p1,1,1);
+    $item2 = substr($p2,-1);
+  }
+
+  if ($type eq "ab") {
+    $item1 = substr($p1,2,1);
+    $item2 = substr($p2,0,1);
+  }
+
+  return $match{"$item1$item2"};
+}
+
+sub bynumber { $a <=> $b }

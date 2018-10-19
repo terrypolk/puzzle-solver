@@ -1,0 +1,157 @@
+#!/usr/bin/perl
+
+# a = in circle
+# b = out circle
+# c = in cross
+# d = out cross
+# e = out inward arrow
+# f = in outward arrow
+# g = out outward arrow
+# h = in inward arrow
+
+$match{ab} = 1;
+$match{ba} = 1;
+$match{cd} = 1;
+$match{dc} = 1;
+$match{ef} = 1;
+$match{fe} = 1;
+$match{gh} = 1;
+$match{hg} = 1;
+
+ @{$puz{1}{configs}} = qw(abdc cabd dcab bdca acdb bacd dbac cdba);
+ @{$puz{2}{configs}} = qw(aebc caeb bcae ebca acbe eacb beac cbea);
+ @{$puz{3}{configs}} = qw(abgc cabg gcab bgca acgb bacg gbac cgba);
+ @{$puz{4}{configs}} = qw(aeec caee ecae eeca acee eace eeac ceea);
+ 
+ @{$puz{5}{configs}} = qw(hbba ahbb bahb bbah habb bhab bbha abbh);
+ @{$puz{6}{configs}} = qw(hgea ahge eahg geah haeg ghae egha aegh);
+ @{$puz{7}{configs}} = qw(hgda ahgd dahg gdah hadg ghad dgha adgh);
+ @{$puz{8}{configs}} = qw(hgba ahgb bahg gbah habg ghab bgha abgh);
+
+ @{$puz{9}{configs}} = qw(fgga afgg gafg ggaf fagg gfag ggfa aggf);
+@{$puz{10}{configs}} = qw(fdba afdb bafd dbaf fabd dfab bdfa abdf);
+
+@{$puz{11}{configs}} = qw(fdgc cfdg gcfd dgcf fcgd dfcg gdfc cgdf);
+@{$puz{12}{configs}} = qw(fbec cfbe ecfb becf fceb bfce ebfc cebf);
+
+@{$puz{13}{configs}} = qw(hbef fhbe efhb befh hfeb bhfe ebhf febh);
+@{$puz{14}{configs}} = qw(hdef fhde efhd defh hfed dhfe edhf fedh);
+
+@{$puz{15}{configs}} = qw(hdbh hhdb bhhd dbhh hhbd dhhb bdhh hbdh);
+
+@{$puz{16}{configs}} = qw(heec chee eche eech hcee ehce eehc ceeh);
+
+#- "Name" the pieces.
+for (1..16) {
+  $puz{$_}{name} = ${$puz{$_}{configs}}[0];
+}
+
+$lower1 = 1; 
+$upper1 = 16; 
+
+$lower2 = 0;
+$upper2 = 7;
+
+$try = 0;
+while (1) {
+  $try++;
+  $piecesused = 0;
+  @sol = ();
+  %used = ();
+
+  while ($piecesused < 16) {
+    #- Randomly select a piece.
+    $piece = int(rand( $upper1-$lower1+1 ) ) + $lower1; 
+    next if ($used{$piece});
+    $used{$piece} = 1;
+    $piecesused++;
+  
+    #- Randomly select an orientation.
+    $config = int(rand( $upper2-$lower2+1 ) ) + $lower2; 
+    
+    #- Place the piece.
+    $thispiece = ${$puz{$piece}{configs}}[$config]; 
+    push(@sol, $thispiece);
+  }
+  
+  #- See if this is a solved puzzle. lr = left-right ab = above-below
+  next if (! match("lr", $sol[0], $sol[1]));
+  next if (! match("lr", $sol[1], $sol[2]));
+  next if (! match("lr", $sol[2], $sol[3]));
+  
+  if (0) {
+  next if (! match("lr", $sol[4], $sol[5]));
+  next if (! match("lr", $sol[5], $sol[6]));
+  next if (! match("lr", $sol[6], $sol[7]));
+  
+  next if (! match("lr", $sol[8], $sol[9]));
+  next if (! match("lr", $sol[9], $sol[10]));
+  next if (! match("lr", $sol[10], $sol[11]));
+  
+  next if (! match("lr", $sol[12], $sol[13]));
+  next if (! match("lr", $sol[13], $sol[14]));
+  next if (! match("lr", $sol[14], $sol[15]));
+  
+  next if (! match("ab", $sol[0], $sol[4]));
+  next if (! match("ab", $sol[4], $sol[8]));
+  next if (! match("ab", $sol[8], $sol[12]));
+
+  next if (! match("ab", $sol[1], $sol[5]));
+  next if (! match("ab", $sol[5], $sol[9]));
+  next if (! match("ab", $sol[9], $sol[13]));
+
+  next if (! match("ab", $sol[2], $sol[6]));
+  next if (! match("ab", $sol[6], $sol[10]));
+  next if (! match("ab", $sol[10], $sol[14]));
+
+  next if (! match("ab", $sol[3], $sol[7]));
+  next if (! match("ab", $sol[7], $sol[11]));
+  next if (! match("ab", $sol[11], $sol[15]));
+  }
+  
+  #- All of the pieces fit together.
+  last;
+}
+
+print "Found solution in $try tries.\n\n";
+
+printrow((@sol[0..3]));
+print "\n";
+printrow((@sol[4..7]));
+print "\n";
+printrow((@sol[8..11]));
+print "\n";
+printrow((@sol[12..15]));
+print "\n";
+
+
+sub printrow {
+  my(@data) = @_;
+  my($item,@row1,@row2,@row3);
+  foreach $item (@data) {
+    push(@row1, substr($item,0,1));
+    push(@row2, substr($item,-1) . "+" . substr($item,1,1));
+    push(@row3, substr($item,2,1));
+  }
+  print " " . join("   ", @row1) . "\n";
+  print join(" ", @row2) . "\n";
+  print " " . join("   ", @row3) . "\n";
+}
+
+sub match {
+  my($type, $p1, $p2) = @_;
+  my($item1, $item2);
+
+  if ($type eq "lr") {
+    $item1 = substr($p1,1,1);
+    $item2 = substr($p2,-1);
+  }
+
+  if ($type eq "ab") {
+    $item1 = substr($p1,2,1);
+    $item2 = substr($p2,0,1);
+  }
+
+  return $match{"$item1$item2"};
+}
+
